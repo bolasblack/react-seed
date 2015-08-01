@@ -43,7 +43,7 @@ gulp.task 'fe:assets', ->
 gulp.task 'fe:watch', ->
   gulp_livereload.listen()
   gulp.watch('scripts/vendor.coffee', ['fe:scriptsVendor'])
-  gulp.watch('scripts/app.coffee', ['fe:scripts'])
+  gulp.watch('scripts/**/*', ['fe:scripts'])
   gulp.watch('styles/**/*', ['fe:styles'])
   gulp.watch('assets/**/*', ['fe:assets'])
 
