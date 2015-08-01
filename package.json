@@ -1,0 +1,42 @@
+{
+  "name": "react-seed",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp"
+  },
+  "keywords": [
+    "monit"
+  ],
+  "author": "c4605 <bolasblack@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "backbone": "1.2.1",
+    "bluebird": "2.9.34",
+    "bootstrap-sass": "3.3.5",
+    "component-ajax": "0.0.2",
+    "lodash": "3.10.0",
+    "moment": "2.10.6",
+    "react": "0.13.3",
+    "react-bootstrap": "0.24.3"
+  },
+  "devDependencies": {
+    "aliasify": "1.7.2",
+    "browserify": "11.0.1",
+    "coffee-reactify": "4.0.0",
+    "coffee-script": "1.9.3",
+    "gulp": "3.9.0",
+    "gulp-livereload": "3.8.0",
+    "gulp-sass": "2.0.4",
+    "st": "0.5.5",
+    "vinyl-source-stream": "1.1.0"
+  },
+  "aliasify": {
+    "aliases": {
+      "../moment": "moment",
+      "underscore": "lodash"
+    }
+  }
+}
