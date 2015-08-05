@@ -13,14 +13,12 @@
   "author": "c4605 <bolasblack@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "backbone": "1.2.1",
     "bluebird": "2.9.34",
     "bootstrap-sass": "3.3.5",
     "lodash": "3.10.0",
     "moment": "2.10.6",
     "react": "0.13.3",
-    "react-bootstrap": "0.24.3",
-    "zepto": "madrobby/zepto#v1.1.6"
+    "react-bootstrap": "0.24.3"
   },
   "devDependencies": {
     "aliasify": "1.7.2",
