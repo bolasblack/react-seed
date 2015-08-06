@@ -26,9 +26,8 @@
     "coffee-reactify": "4.0.0",
     "coffee-script": "1.9.3",
     "gulp": "3.9.0",
-    "gulp-livereload": "3.8.0",
     "gulp-sass": "2.0.4",
-    "st": "0.5.5",
+    "gulp-webserver": "0.9.1",
     "vinyl-source-stream": "1.1.0"
   },
   "aliasify": {

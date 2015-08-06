@@ -1,12 +1,11 @@
 
 _ = require 'lodash'
-st = require 'st'
 http = require 'http'
 browserify = require 'browserify'
 
 gulp = require 'gulp'
 gulp_source = require 'vinyl-source-stream'
-gulp_livereload = require 'gulp-livereload'
+gulp_webserver = require 'gulp-webserver'
 
 browserifyOpts = {
   transform: ['coffee-reactify', 'aliasify']
@@ -19,40 +18,32 @@ gulp.task 'fe:scriptsVendor', ->
     .bundle()
     .pipe gulp_source 'vendor.js'
     .pipe gulp.dest 'public/scripts'
-    .pipe gulp_livereload()
 
 gulp.task 'fe:scripts', ->
   browserify('scripts/app.coffee', browserifyOpts)
     .bundle()
     .pipe gulp_source 'app.js'
     .pipe gulp.dest 'public/scripts'
-    .pipe gulp_livereload()
 
 gulp.task 'fe:styles', ->
   gulp_sass = require 'gulp-sass'
   gulp.src 'styles/app.sass'
     .pipe gulp_sass()
     .pipe gulp.dest 'public/styles'
-    .pipe gulp_livereload()
 
 gulp.task 'fe:assets', ->
   gulp.src 'assets/**/*'
     .pipe gulp.dest 'public'
-    .pipe gulp_livereload()
 
 gulp.task 'fe:watch', ->
-  gulp_livereload.listen()
   gulp.watch('scripts/vendor.coffee', ['fe:scriptsVendor'])
   gulp.watch('scripts/**/*', ['fe:scripts'])
   gulp.watch('styles/**/*', ['fe:styles'])
   gulp.watch('assets/**/*', ['fe:assets'])
-
-gulp.task 'fe:staticServer', (done) ->
-  http.createServer(
-    st(path: __dirname + '/public', index: 'index.html', cache: false)
-  ).listen (process.env.PORT or '9090'), ->
-    console.log 'Static server listening at 9090'
-    done()
+  gulp.src('./public').pipe gulp_webserver(
+    livereload: true
+    port: 9090
+  )
 
 gulp.task 'fe:build', ['fe:scriptsVendor', 'fe:scripts', 'fe:styles', 'fe:assets']
-gulp.task 'default', ['fe:build', 'fe:staticServer', 'fe:watch']
+gulp.task 'default', ['fe:build', 'fe:watch']
