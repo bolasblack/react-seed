@@ -1,4 +1,4 @@
-# react-seed
+# react-coffee-seed
 
 ## Usage
 
@@ -6,8 +6,7 @@
 
 ## Components
 
+* React
 * Lodash
-* moment
-* bluebird
-* Backbone
-* component-ajax
+* Moment
+* Bluebird
