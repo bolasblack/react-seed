@@ -1,3 +1,5 @@
+require './vendor'
+
 App = React.createClass(
   render: ->
     <div>It works</div>
