@@ -18,7 +18,7 @@ gulp.task 'fe:scripts', ->
     .pipe gulp.dest 'public/scripts'
 
 gulp.task 'fe:styles', ->
-  gulp.src 'styles/app.sass'
+  gulp.src 'styles/vendor.sass'
     .pipe gulp_sass()
     .pipe gulp.dest 'public/styles'
 

@@ -9,11 +9,12 @@ config = {
   resolveLoader:
     modulesDirectories: ['node_modules']
   resolve:
-    extensions: ['', '.js', '.coffee']
+    extensions: ['', '.js', '.coffee', '.sass']
   module:
     loaders: [
-      {test: /\.css$/, loaders: ['style', 'css']}
-      {test: /\.coffee$/, loaders: ["coffee-jsx-loader"]}
+      {test: /\.css$/, loader: 'style!css'}
+      {test: /\.sass$/, loader: 'style!css!sass?indentedSyntax'}
+      {test: /\.coffee$/, loader: 'coffee-jsx'}
     ]
   output:
     path: sysPath.join(__dirname, "public")
@@ -22,7 +23,7 @@ config = {
 
 if process.env.NODE_ENV isnt 'production'
   config = _.extend {
-    devtool: "eval"
+    devtool: ['source-map']
     watch: true
     debug: true
     plugins: [

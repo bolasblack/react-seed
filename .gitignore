@@ -1,4 +1,5 @@
 public
 npm-debug.log
 node_modules/*
-!node_modules/app
+!node_modules/scripts
+!node_modules/styles

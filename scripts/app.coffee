@@ -1,8 +1,9 @@
-require './vendor'
+require 'scripts/vendor'
+require 'styles/app'
 
 App = React.createClass(
   render: ->
-    <div>It works</div>
+    <div className="app-page">It works</div>
 )
 
 React.render(
