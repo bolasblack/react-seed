@@ -2,7 +2,7 @@
 
 ## Usage
 
-    npm start
+    make
 
 ## Components
 
