@@ -7,7 +7,7 @@ webpackConfig = require './webpack.config'
 gulp = require 'gulp'
 gulp_util = require 'gulp-util'
 gulp_sass = require 'gulp-sass'
-gulp_webpack = require 'gulp-webpack'
+gulp_webpack = require 'webpack-stream'
 
 # from https://github.com/milankinen/livereactload/blob/master/examples/05-build-systems/gulpfile.js
 gulp.task 'fe:scripts', ->

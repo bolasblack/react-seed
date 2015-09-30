@@ -31,5 +31,9 @@ if process.env.NODE_ENV isnt 'production'
     ]
   }, config
   config.entry.unshift "webpack-dev-server/client?http://127.0.0.1:9090", "webpack/hot/dev-server"
+else
+  config = _.extend {
+    devtool: ['source-map']
+  }, config
 
 module.exports = config

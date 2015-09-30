@@ -24,14 +24,14 @@
     "gulp": "3.9.0",
     "gulp-sass": "2.0.4",
     "gulp-util": "3.0.6",
-    "gulp-webpack": "1.5.0",
     "jest-cli": "0.5.8",
     "lodash": "3.10.1",
     "node-sass": "3.3.3",
     "sass-loader": "3.0.0",
     "style-loader": "0.12.4",
     "webpack": "1.12.2",
-    "webpack-dev-server": "1.11.0"
+    "webpack-dev-server": "1.11.0",
+    "webpack-stream": "2.1.1"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
