@@ -1,19 +1,17 @@
-
 _ = require 'lodash'
 http = require 'http'
 webpack = require 'webpack'
 webpackDevServer = require "webpack-dev-server"
+webpackConfig = require './webpack.config'
 
 gulp = require 'gulp'
 gulp_util = require 'gulp-util'
 gulp_sass = require 'gulp-sass'
 gulp_webpack = require 'gulp-webpack'
 
-webpackConfig = require './webpack.config'
-
 # from https://github.com/milankinen/livereactload/blob/master/examples/05-build-systems/gulpfile.js
 gulp.task 'fe:scripts', ->
-  gulp.src 'scripts/app.coffee'
+  gulp.src 'scripts/index.coffee'
     .pipe(gulp_webpack webpackConfig)
     .pipe gulp.dest 'public/scripts'
 

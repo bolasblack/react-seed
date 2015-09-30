@@ -7,6 +7,6 @@
 ## Components
 
 * React
-* Lodash
-* Moment
-* Bluebird
+* Gulp
+* Webpack
+* jest

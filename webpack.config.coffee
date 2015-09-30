@@ -4,7 +4,7 @@ webpack = require 'webpack'
 
 config = {
   entry: [
-    './scripts/app'
+    './scripts/index'
   ]
   resolveLoader:
     modulesDirectories: ['node_modules']
