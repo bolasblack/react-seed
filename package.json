@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "test": "jest",
+    "test": "NODE_ENV=test jest --watch --watchExtensions=coffee",
     "start": "gulp"
   },
   "keywords": [
@@ -49,8 +49,12 @@
       "coffee.md",
       "js"
     ],
+    "testPathDirs": [
+      "<rootDir>/scripts"
+    ],
     "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react"
-    ]
+      "/node_modules/"
+    ],
+    "verbose": true
   }
 }
