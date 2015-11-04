@@ -1,11 +1,11 @@
-React = require 'react/addons'
+React = require 'react'
+TestUtils = require 'react-addons-test-utils'
 
 jest.dontMock 'scripts/app'
 
 describe 'App', ->
   it 'works', ->
-    TestUtils = React.addons.TestUtils
     App = require 'scripts/app'
     app = TestUtils.renderIntoDocument(<App />)
     pageContainer = TestUtils.findRenderedDOMComponentWithClass(app, 'app-page')
-    expect(pageContainer.getDOMNode().textContent).toEqual 'It works'
+    expect(pageContainer.textContent).toEqual 'It works'

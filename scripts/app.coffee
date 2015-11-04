@@ -1,5 +1,5 @@
 require 'styles/app'
-React = require 'react/addons'
+React = require 'react'
 
 module.exports = App = React.createClass(
   render: ->

@@ -1,7 +1,7 @@
 App = require 'scripts/app'
-React = require 'react/addons'
+ReactDOM = require 'react-dom'
 
-React.render(
+ReactDOM.render(
   <App />
   document.getElementById('app')
 )
