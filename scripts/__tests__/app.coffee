@@ -1,11 +1,21 @@
 React = require 'react'
-TestUtils = require 'react-addons-test-utils'
-
-jest.dontMock 'scripts/app'
+App = require '../app'
 
 describe 'App', ->
-  it 'works', ->
-    App = require 'scripts/app'
-    app = TestUtils.renderIntoDocument(<App />)
-    pageContainer = TestUtils.findRenderedDOMComponentWithClass(app, 'app-page')
-    expect(pageContainer.textContent).toEqual 'It works'
+  beforeEach ->
+    jest.resetModules()
+
+  it 'successfully rendered', ->
+    React = require('react')
+    renderer = require('react-test-renderer')
+    elem = renderer.create(<App />)
+    tree = elem.toJSON()
+    expect(tree).toMatchSnapshot()
+
+  it 'can also response some event', ->
+    onClick = jest.fn()
+    React = require('react')
+    {shallow} = require('enzyme')
+    elem = shallow(<App onClick={onClick} />)
+    elem.props().onClick()
+    expect(onClick).toBeCalled()

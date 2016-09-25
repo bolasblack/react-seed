@@ -1,47 +1,59 @@
 _ = require 'lodash'
-http = require 'http'
+fs = require 'fs'
+jest = require 'jest-cli'
 webpack = require 'webpack'
 webpackDevServer = require "webpack-dev-server"
-webpackConfig = require './webpack.config'
 
 gulp = require 'gulp'
 gulp_util = require 'gulp-util'
 gulp_sass = require 'gulp-sass'
-gulp_webpack = require 'webpack-stream'
 
-# from https://github.com/milankinen/livereactload/blob/master/examples/05-build-systems/gulpfile.js
-gulp.task 'fe:scripts', ->
-  gulp.src 'scripts/index.coffee'
-    .pipe(gulp_webpack webpackConfig)
-    .pipe gulp.dest 'public/scripts'
+webpackConfig = require './webpack.config.coffee'
+webpackCompiler = webpack webpackConfig
 
-gulp.task 'fe:styles', ->
+# from https://webpack.github.io/docs/usage-with-gulp.html
+gulp.task 'scripts', (done) ->
+  webpackCompiler.run (err, stats) ->
+    console.log 'scripts compiled'
+    throw new gulp_util.PluginError("webpack", err) if err
+    console.log stats.toString colors: true, chunks: false
+    done()
+
+gulp.task 'styles', ->
   gulp.src 'styles/vendor.sass'
     .pipe gulp_sass()
     .pipe gulp.dest 'public/styles'
 
-gulp.task 'fe:assets', ->
+gulp.task 'assets', ->
   gulp.src 'assets/**/*'
     .pipe gulp.dest 'public'
 
-gulp.task 'fe:watch', (callback) ->
-  gulp.watch('styles/**/*', ['fe:styles'])
-  gulp.watch('assets/**/*', ['fe:assets'])
+gulp.task 'jest', (done) ->
+  packageInfo = JSON.parse fs.readFileSync './package.json'
+  jest.runCLI packageInfo.jest, __dirname, (result) -> done()
 
-  devServer = new webpackDevServer(webpack(webpackConfig),
+gulp.task 'watch', (callback) ->
+  gulp.watch 'scripts/**/*', gulp.series 'jest'
+  gulp.watch 'styles/**/*', gulp.series 'styles'
+  gulp.watch 'assets/**/*', gulp.series 'assets'
+
+  devServer = new webpackDevServer(webpackCompiler,
     hot: true
-    contentBase: './public/'
+    # inline: true
+    contentBase: "./public/"
+    publicPath: '/scripts'
     watchOptions:
       aggregateTimeout: 100
       poll: 300
-    noInfo: true
+    stats:
+      colors: true
+      chunks: false
   )
   devServer.listen 9090, "127.0.0.1", (err) ->
     throw new gulp_util.PluginError("webpack-dev-server", err) if err
     gulp_util.log "webpack-dev-server started at http://127.0.0.1:9090"
-    callback()
 
   return
 
-gulp.task 'fe:build', ['fe:scripts', 'fe:styles', 'fe:assets']
-gulp.task 'default', ['fe:build', 'fe:watch']
+gulp.task 'build', gulp.parallel 'scripts', 'styles', 'assets'
+gulp.task 'default', gulp.series gulp.parallel('styles', 'assets'), 'watch'

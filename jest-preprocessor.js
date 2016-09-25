@@ -1,8 +1,8 @@
-var coffee = require('coffee-script')
-var coffeeReact = require('coffee-react')
+const coffee = require('coffee-script')
+const coffeeReact = require('coffee-react')
 
 module.exports = {
-  process: (src, path) => {
+  process(src, path) {
     // CoffeeScript files can be .coffee, .litcoffee, or .coffee.md
     if (coffee.helpers.isCoffee(path)) {
       return coffeeReact.compile(src, {bare: true})

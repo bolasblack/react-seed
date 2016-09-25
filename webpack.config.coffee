@@ -3,9 +3,8 @@ sysPath = require 'path'
 webpack = require 'webpack'
 
 config = {
-  entry: [
-    './scripts/index'
-  ]
+  context: sysPath.resolve('.')
+  entry: ['./scripts/index.coffee']
   resolveLoader:
     modulesDirectories: ['node_modules']
   resolve:
@@ -14,26 +13,29 @@ config = {
     loaders: [
       {test: /\.css$/, loader: 'style!css'}
       {test: /\.sass$/, loader: 'style!css!sass?indentedSyntax'}
-      {test: /\.coffee$/, loader: 'coffee-jsx'}
+      {test: /\.coffee$/, loader: 'react-hot-loader/webpack!coffee!cjsx'}
     ]
   output:
-    path: sysPath.join(__dirname, "public")
+    path: sysPath.resolve('./public')
+    publicPath: '/'
     filename: '[name].js'
+  devtool: 'source-map'
 }
 
 if process.env.NODE_ENV isnt 'production'
-  config = _.extend {
-    devtool: ['source-map']
+  config = _.extend {}, config, {
     watch: true
-    debug: true
+    entry: _.flatten([
+      "webpack-dev-server/client?http://127.0.0.1:9090"
+      "webpack/hot/dev-server"
+      "react-hot-loader/patch"
+      config.entry.slice(0)
+    ])
     plugins: [
       new webpack.HotModuleReplacementPlugin()
     ]
-  }, config
-  config.entry.unshift "webpack-dev-server/client?http://127.0.0.1:9090", "webpack/hot/dev-server"
+  }
 else
-  config = _.extend {
-    devtool: ['source-map']
-  }, config
+  config = _.extend {}, config
 
 module.exports = config

@@ -2,11 +2,12 @@
 
 ## Usage
 
-    make
+    npm start
+    npm test
 
 ## Components
 
 * React
 * Gulp
 * Webpack
-* jest
+* Jest

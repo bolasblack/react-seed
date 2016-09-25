@@ -1,7 +1,6 @@
-require 'styles/app'
 React = require 'react'
 
-module.exports = App = React.createClass(
-  render: ->
-    <div className="app-page">It works</div>
-)
+module.exports = ({onClick}) ->
+  return (
+    <div className="app-page" onClick={onClick}>It works</div>
+  )
