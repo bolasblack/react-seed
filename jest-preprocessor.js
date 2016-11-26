@@ -1,15 +1,12 @@
-const coffee = require('coffee-script')
-const coffeeReact = require('coffee-react')
+const babelJest = require('babel-jest')
 
 module.exports = {
-  process(src, path) {
-    // CoffeeScript files can be .coffee, .litcoffee, or .coffee.md
-    if (coffee.helpers.isCoffee(path)) {
-      return coffeeReact.compile(src, {bare: true})
-    } else if (/\.(sass|scss|css)$/.test(path)) {
+  canInstrument: true,
+  process(src, filename, config, preprocessorOptions) {
+    if (/\.(sass|scss|css)$/.test(filename)) {
       return ''
     } else {
-      return src
+      return babelJest.createTransformer().process(src, filename, config, preprocessorOptions)
     }
   }
 }

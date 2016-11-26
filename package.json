@@ -1,10 +1,11 @@
 {
-  "name": "react-coffee-seed",
+  "name": "react-seed",
   "version": "0.0.1",
   "description": "",
   "main": "",
   "scripts": {
-    "test": "gulp test",
+    "_publish_history": "git checkout master && rm -rf ./* && git checkout history -- . && git add -A && git commit --amend --no-edit",
+    "test": "jest",
     "start": "gulp"
   },
   "keywords": [
@@ -13,43 +14,44 @@
   "author": "c4605 <bolasblack@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bootstrap-sass": "3.3.7",
-    "react": "15.3.2",
-    "react-dom": "15.3.2"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
   },
   "devDependencies": {
-    "cjsx-loader": "3.0.0",
-    "coffee-loader": "0.7.2",
-    "coffee-react": "5.0.0",
-    "coffee-script": "1.10.0",
-    "css-loader": "0.25.0",
-    "enzyme": "2.4.1",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-jsx-pragmatic": "^1.0.2",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-object-rest-spread": "^6.19.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.26.0",
+    "enzyme": "^2.6.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-sass": "2.3.2",
-    "gulp-util": "3.0.7",
-    "jest-cli": "15.1.1",
-    "lodash": "4.16.1",
-    "node-sass": "3.10.0",
-    "react-addons-test-utils": "15.3.2",
-    "react-hot-loader": "3.0.0-beta.5",
-    "react-test-renderer": "15.3.2",
-    "sass-loader": "4.0.2",
-    "style-loader": "0.13.1",
-    "webpack": "1.13.2",
-    "webpack-dev-server": "1.16.1"
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-util": "^3.0.7",
+    "jest": "^17.0.3",
+    "lodash": "^4.17.2",
+    "node-sass": "^3.13.0",
+    "react-addons-test-utils": "^15.4.1",
+    "react-hot-loader": "3.0.0-beta.6",
+    "react-test-renderer": "^15.4.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-server": "2.1.0-beta.12"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
-    "testRegex": "(/__tests__/.*)\\.(js|jsx|coffee)$",
+    "transform": {
+      ".*": "<rootDir>/jest-preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*)\\.(js|jsx)$",
     "moduleFileExtensions": [
       "js",
       "jsx",
       "json",
       "node",
-      "sass",
-      "coffee",
-      "litcoffee",
-      "coffee.md"
+      "sass"
     ],
     "testPathDirs": [
       "<rootDir>/scripts"

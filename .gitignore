@@ -1,3 +1,17 @@
-public
-npm-debug.log
+# Mac OS
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+
+# Vim
+*.sw[a-z]
+
+*.log
 node_modules
+public
+coverage
+remotedev-db.sqlite3
