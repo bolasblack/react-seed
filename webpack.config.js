@@ -35,7 +35,10 @@ let config = {
       exclude: /node_modules/,
       use: [
         'react-hot-loader/webpack',
-        "babel-loader",
+        {
+          loader: "babel-loader",
+          options: require('./.babelrc')(),
+        },
       ],
     }],
   },

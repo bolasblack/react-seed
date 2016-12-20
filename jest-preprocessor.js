@@ -6,7 +6,7 @@ module.exports = {
     if (/\.(sass|scss|css)$/.test(filename)) {
       return ''
     } else {
-      return babelJest.createTransformer().process(src, filename, config, preprocessorOptions)
+      return babelJest.createTransformer(require('./.babelrc')()).process(src, filename, config, preprocessorOptions)
     }
   }
 }
